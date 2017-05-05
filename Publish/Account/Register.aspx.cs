@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Web.Services;
 using Destead;
+using System.Web.Script.Services;
 
 
 public partial class Account_Register : System.Web.UI.Page
@@ -67,4 +68,47 @@ public partial class Account_Register : System.Web.UI.Page
             ErrorMessage.Text =  message;
         }
     }
+
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+
+    public static string SaveUserDetails(object UserName, object UserKey, object Salt, object IterationCount)
+    {
+        int userId = 0;
+
+        string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            using (SqlCommand cmd = new SqlCommand("Insert_User"))
+            {
+                using (SqlDataAdapter sda = new SqlDataAdapter())
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Username", UserName.ToString().Trim());
+                    cmd.Parameters.AddWithValue("@P", Helper.GetPrime().ToString());
+                    cmd.Parameters.AddWithValue("@G", Helper.GetRandomInteger().ToString());
+                    cmd.Parameters.AddWithValue("@UserKey", UserKey.ToString());
+                    cmd.Parameters.AddWithValue("@Salt", Salt.ToString());
+                    cmd.Parameters.AddWithValue("@IterationCount", int.Parse(IterationCount.ToString()));
+                    cmd.Connection = conn;
+                    conn.Open();
+                    userId = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+                }
+            }
+            string message = string.Empty;
+            switch (userId)
+            {
+                case -1:
+                    message = "Username already exists. Please choose a different username.";
+                    break;
+                default:
+                    message = "Registered successfully, Welcome to the system: " + UserName.ToString();
+                    break;
+            }
+
+           return message;
+        }
+    }
+
 }

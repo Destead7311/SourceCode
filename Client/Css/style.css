@@ -1,0 +1,55 @@
+    body {
+            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+            font-size: 100%;
+            background-color: #6183B4;
+            color: white;
+        }
+    .userinput{
+        
+        padding: 12px 20px;
+        box-sizing: border-box;
+        display: inline-block;
+        border-radius: 4px;
+        border: 2px solid #ccc;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        outline: none;
+    }
+    .userinput:hover
+    {
+        border: 2px solid #E52B50;
+    }
+    .userinput:focus
+    {
+        border: 1px solid #E52B50;
+    }
+        .submit {
+            background-color: #E58421;
+            color: white;
+            font-size: 15px;
+            border: 1px;
+            border-radius: 5px;
+            width: 50%;
+            height: 25%;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            align-self: center;
+        }
+    .submit:hover
+    {
+       
+        background-color: #E52A00;
+        position:relative;
+        border: 2px;
+    }
+    #status {
+        /* avoid an excessively wide status text */
+        white-space: pre;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 800px;
+        color:red;
+        font-size:20px;
+        
+    }
+    

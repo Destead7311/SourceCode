@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<body>
+    <center>
+        Register here!
+        <br /><label id="status"></label><br />
+        <input type="text" class="userinput" placeholder="select a new username" maxlength="32" id="UserName" value=""><br />
+        <input type="password" class="userinput" placeholder="enter password" maxlength="32" id="Password"><br />
+        <input type="password" class="userinput" placeholder="confirm password" maxlength="32" id="ConfirmPassword"><br />
+        <input type="text" class="userinput" placeholder="select a salt" maxlength="32" id="Salt" value=""><br />
+        <input type="number" class="userinput" placeholder="select an iteration count" maxlength="32" id="IterationCount" value=""><br />
+        <br><br /><br /><br /><br />
+        <button class="submit" id="register">Register</button><br /><br />
+        <a href="login.html"> Already registered? Login </a>
+    </center>
+    <script src="Scripts/Helper/jquery-3.1.1.js" type="text/javascript"></script>
+    <script type="text/javascript" src="Scripts/Account/register.js"></script>
+    <script type="text/javascript" src="Scripts/Crypto/pkdf2.js"></script>
+    <script type="text/javascript" src="Scripts/Crypto/sha1.js"></script>
+    <link rel="stylesheet" type="text/css" href="Css/style.css">
+</body>
+</html>
